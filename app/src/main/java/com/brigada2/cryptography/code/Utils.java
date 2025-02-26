@@ -2,11 +2,12 @@ package com.brigada2.cryptography.code;
 
 public class Utils {
     public static boolean trialDivision(int num) {
-        if (num < 2) return false;
-        if (num == 2) return true;
-        if (num % 2 == 0) return false;
+        if (num < 2) return false;  // 0 и 1 — не простые
+        if (num == 2) return true;  // 2 — единственное чётное простое число
+        if (num % 2 == 0) return false;  // Чётные числа >2 не являются простыми
 
-        for (int i = 3; i <= Math.sqrt(num); i += 2) {
+        int sqrtNum = (int) Math.sqrt(num);  // Вычисляем sqrt(num) один раз
+        for (int i = 3; i <= sqrtNum; i += 2) {  // Перебираем только нечётные делители
             if (num % i == 0) {
                 return false;
             }

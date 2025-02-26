@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
                 val parametrK = remember{ mutableStateOf("") }
                 val parametrC = remember{ mutableStateOf("") }
                 var result = remember{mutableStateOf("")}
+                var time = remember{mutableStateOf("")}
 
                 Scaffold(topBar = {
                     @OptIn(ExperimentalMaterial3Api::class)
@@ -93,12 +94,12 @@ class MainActivity : ComponentActivity() {
                             }
 
                             Button(onClick = {
-                                result.value = Control.calculate(inputNum.value, parametrK.value, parametrC.value);
+                                result.value = Control.calculate(inputNum.value, parametrK.value, parametrC.value)
+                                time.value = Control.getTimeDelta().toString()
                             },
                                 modifier = Modifier.align(Alignment.CenterHorizontally)){
                                 Text("Рассчитать", fontSize = 28.sp)
                             }
-
 
                             Text("Результаты", fontSize = 28.sp,
                                 textAlign = TextAlign.Center,
@@ -109,7 +110,10 @@ class MainActivity : ComponentActivity() {
                                 Text("Простые делители", modifier = Modifier.weight(2f).padding(10.dp))
                                 Text(result.value, fontSize = 28.sp, modifier = Modifier.weight(3f).padding(10.dp))
                             }
-
+                            Row(Modifier.fillMaxWidth()){
+                                Text("Время выполнения", modifier = Modifier.weight(2f).padding(10.dp))
+                                Text(time.value, fontSize = 28.sp, modifier = Modifier.weight(3f).padding(10.dp))
+                            }
 
                         }
                     }
@@ -118,3 +122,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
